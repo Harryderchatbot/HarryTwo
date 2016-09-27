@@ -84,11 +84,11 @@ const fbMessage = (id, text) => {
 const sessions = {};
 
 const firstEntityValue = (entities, entity) => {
+   console.log('firstEntityValue');
   const val = entities && entities[entity] &&
     Array.isArray(entities[entity]) &&
     entities[entity].length > 0 &&
-    entities[entity][0].value
-  ;
+    entities[entity][0].value;
   if (!val) {
     return null;
   }
@@ -141,9 +141,11 @@ const actions = {
   // You should implement your custom actions here
   // See https://wit.ai/docs/quickstart
     getForecast({context, entities}) {
+      console.log('in getForecast');
     return new Promise(function(resolve, reject) {
       var location = firstEntityValue(entities, 'location')
       if (location) {
+         console.log('location ist gesetzt');
         context.forecast = 'sunny in ' + location; // we should call a weather API here
         delete context.missingLocation;
       } else {
