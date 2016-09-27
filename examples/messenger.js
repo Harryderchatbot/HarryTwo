@@ -149,6 +149,7 @@ const actions = {
         context.forecast = 'sunny in ' + location; // we should call a weather API here
         delete context.missingLocation;
       } else {
+         console.log('location nicht geetzt => else zweig');
         context.missingLocation = true;
         delete context.forecast;
       }
