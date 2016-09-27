@@ -83,6 +83,18 @@ const fbMessage = (id, text) => {
 // sessionId -> {fbid: facebookUserId, context: sessionState}
 const sessions = {};
 
+const firstEntityValue = (entities, entity) => {
+  const val = entities && entities[entity] &&
+    Array.isArray(entities[entity]) &&
+    entities[entity].length > 0 &&
+    entities[entity][0].value
+  ;
+  if (!val) {
+    return null;
+  }
+  return typeof val === 'object' ? val.value : val;
+};
+
 const findOrCreateSession = (fbid) => {
   let sessionId;
   // Let's see if we already have a session for the user fbid
@@ -128,6 +140,19 @@ const actions = {
   },
   // You should implement your custom actions here
   // See https://wit.ai/docs/quickstart
+    getForecast({context, entities}) {
+    return new Promise(function(resolve, reject) {
+      var location = firstEntityValue(entities, 'location')
+      if (location) {
+        context.forecast = 'sunny in ' + location; // we should call a weather API here
+        delete context.missingLocation;
+      } else {
+        context.missingLocation = true;
+        delete context.forecast;
+      }
+      return resolve(context);
+    });
+  },
 };
 
 // Setting up our bot
