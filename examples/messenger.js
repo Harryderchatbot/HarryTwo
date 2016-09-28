@@ -141,18 +141,41 @@ const actions = {
   // You should implement your custom actions here
   // See https://wit.ai/docs/quickstart
     getForecast({context, entities}) {
-      console.log('in getForecast');
-    return new Promise(function(resolve, reject) {
-      var location = firstEntityValue(entities, 'location')
-      if (location) {
-         console.log('location ist gesetzt');
-        context.forecast = 'sunny in ' + location; // we should call a weather API here
-        delete context.missingLocation;
-      } else {
-         console.log('location nicht geetzt => else zweig');
-        context.missingLocation = true;
-        delete context.forecast;
-      }
+     console.log("Medthode:getforecast");
+	var location = context.location;
+	   console.log("location",location);
+	  if (location) {
+		   console.log("merge nicht ausgeführt, versuche location aus entity zu holen");
+		location = firstEntityValue(entities, "location");
+	  }
+	     //var location = firstEntityValue(entities, "location");
+	    console.log("location",location);
+	if (location) {
+		 console.log("location gesetzt");
+			var wetter_aktuell = "http://api.openweathermap.org/data/2.5/weather?q=" + location + "&APPID=bee2a155f8da9fb44104d360cc2feb8f&units=metric";
+			var wetter_vorhersage = "http://api.openweathermap.org/data/2.5/forecast?q="+location +"&APPID=bee2a155f8da9fb44104d360cc2feb8f&units=metric";
+			console.log("wetter_aktuell",wetter_aktuell);
+			fetch(wetter_aktuell).then(function(res) 
+			{ 
+				return res.json(); 
+			}).then(function(json) {
+				
+				//auslesen des ergebnisses
+				var temperatur = json.main.temp; 
+				var vorhersage = json.weather.main;
+				var vorhersage2 = json.weather.description;
+				var temp_min = json.main.temp_min;
+				var temp_max = json.main.temp_max;
+
+				context.forecast = temperatur;
+				 console.log("temperatur",temperatur);
+				delete context.missingLocation;
+			});
+    } else {
+	     console.log("else zweig");
+      context.missingLocation = true;
+      delete context.forecast;
+    }
       return resolve(context);
     });
   },
