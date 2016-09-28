@@ -141,7 +141,8 @@ const actions = {
   // You should implement your custom actions here
   // See https://wit.ai/docs/quickstart
     getForecast({context, entities}) {
-     console.log("Medthode:getforecast");
+	    console.log("Medthode:getforecast");
+	    return new Promise(function(resolve, reject) {
 	var location = context.location;
 	   console.log("location",location);
 	  if (location) {
@@ -171,11 +172,11 @@ const actions = {
 				 console.log("temperatur",temperatur);
 				delete context.missingLocation;
 			});
-    } else {
+    	} else {
 	     console.log("else zweig");
-      context.missingLocation = true;
-      delete context.forecast;
-    }
+      	context.missingLocation = true;
+      	delete context.forecast;
+    	}
       return resolve(context);
     });
   },
