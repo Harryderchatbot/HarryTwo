@@ -143,14 +143,8 @@ const actions = {
     getForecast({context, entities}) {
 	    console.log("Medthode:getforecast");
 	    return new Promise(function(resolve, reject) {
-	var location = context.location;
+	var location = firstEntityValue(entities, 'location')
 	   console.log("location",location);
-	  if (location) {
-		   console.log("merge nicht ausgeführt, versuche location aus entity zu holen");
-		location = firstEntityValue(entities, "location");
-	  }
-	     //var location = firstEntityValue(entities, "location");
-	    console.log("location",location);
 	if (location) {
 		 console.log("location gesetzt");
 			var wetter_aktuell = "http://api.openweathermap.org/data/2.5/weather?q=" + location + "&APPID=bee2a155f8da9fb44104d360cc2feb8f&units=metric";
