@@ -152,11 +152,13 @@ const actions = {
 			console.log("wetter_aktuell",wetter_aktuell);
 			fetch(wetter_aktuell).then(function(res) 
 			{ 
-				console.log("fetch-zweit");
-				console.log("res.json()",res.json());
+				console.log("fetch-zweig");
 				return res.json(); 
 			}).then(function(json) {
-				console.log("json-function");
+				if (json.error && json.error.message) {
+      					throw new Error(json.error.message);
+   				 }
+				console.log("json-function",json);
 				console.log("json.main.temp",json.main.temp);
 				//auslesen des ergebnisses
 				var temperatur = json.main.temp; 
