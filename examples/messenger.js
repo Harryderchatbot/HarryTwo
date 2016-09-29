@@ -153,6 +153,7 @@ const actions = {
 			fetch(wetter_aktuell).then(function(res) 
 			{ 
 				console.log("fetch-zweit");
+				console.log("res.json()",res.json());
 				return res.json(); 
 			}).then(function(json) {
 				console.log("json-function");
