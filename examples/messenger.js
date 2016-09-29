@@ -156,16 +156,16 @@ const actions = {
 				return res.json(); 
 			}).then(function(json) {
 				console.log("json-function");
-				
+				console.log("json.main.temp",json.main.temp);
 				//auslesen des ergebnisses
 				var temperatur = json.main.temp; 
 				var vorhersage = json.weather.main;
 				var vorhersage2 = json.weather.description;
 				var temp_min = json.main.temp_min;
 				var temp_max = json.main.temp_max;
-
+ 				console.log("temperatur",temperatur);
 				context.forecast = temperatur;
-				 console.log("temperatur",temperatur);
+				
 				delete context.missingLocation;
 			});
     	} else {
