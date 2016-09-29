@@ -162,13 +162,13 @@ const actions = {
 				console.log("json.main.temp",json.main.temp);
 				//auslesen des ergebnisses
 				var temperatur = json.main.temp; 
-				var vorhersage = json.weather.main;
-				var vorhersage2 = json.weather.description;
-				var temp_min = json.main.temp_min;
-				var temp_max = json.main.temp_max;
+				//var vorhersage = json.weather.main;
+				//var vorhersage2 = json.weather.description;
+				//var temp_min = json.main.temp_min;
+				//var temp_max = json.main.temp_max;
  				console.log("temperatur",temperatur);
 				context.forecast = temperatur;
-				
+				console.log("missingLocation",context.missingLocation);
 				delete context.missingLocation;
 			});
     	} else {
