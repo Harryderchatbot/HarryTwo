@@ -175,7 +175,8 @@ const actions = {
       //	context.missingLocation = true;
       	delete context.forecast;
     	}
-	console.log("return");  
+	console.log("return");
+	console.log("temperatur",temperatur);  
 	context.forecast = temperatur;
       return resolve(context);
     });
