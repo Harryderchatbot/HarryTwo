@@ -142,6 +142,7 @@ const actions = {
   // See https://wit.ai/docs/quickstart
     getForecast({context, entities}) {
 	    console.log("Medthode:getforecast");
+	    context.forecast = 10;
 	    return new Promise(function(resolve, reject) {
 	var location = firstEntityValue(entities, 'location')
 	   console.log("location",location);
