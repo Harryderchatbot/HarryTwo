@@ -157,7 +157,7 @@ const actions = {
 				return res.json(); 
 			}).then(function(json) {
 				
-				console.log("json-function",json);
+			//	console.log("json-function",json);
 				console.log("json.main.temp",json.main.temp);
 				//auslesen des ergebnisses
 				var temperatur = json.main.temp; 
