@@ -156,9 +156,7 @@ const actions = {
 				console.log("fetch-zweig");
 				return res.json(); 
 			}).then(function(json) {
-				if (json.error && json.error.message) {
-      					throw new Error(json.error.message);
-   				 }
+				
 				console.log("json-function",json);
 				console.log("json.main.temp",json.main.temp);
 				//auslesen des ergebnisses
