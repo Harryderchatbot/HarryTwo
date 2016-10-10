@@ -166,7 +166,8 @@ const actions = {
 				//var temp_min = json.main.temp_min;
 				//var temp_max = json.main.temp_max;
  				console.log("temperatur",temperatur);
-				context.forecast = temperatur;
+				console.log("context.forecast",context.forecast);
+				context.forecast = 12;
 				//console.log("missingLocation",context.missingLocation);
 			//	delete context.missingLocation;
 			});
