@@ -142,7 +142,7 @@ const actions = {
   // See https://wit.ai/docs/quickstart
     getForecast({context, entities}) {
 	    console.log("Medthode:getforecast");
-	    context.forecast = 10;
+	    var temperatur = 0;
 	    return new Promise(function(resolve, reject) {
 	var location = firstEntityValue(entities, 'location')
 	   console.log("location",location);
@@ -161,14 +161,12 @@ const actions = {
 			//	console.log("json-function",json);
 				console.log("json.main.temp",json.main.temp);
 				//auslesen des ergebnisses
-				var temperatur = json.main.temp; 
+				temperatur = json.main.temp; 
 				//var vorhersage = json.weather.main;
 				//var vorhersage2 = json.weather.description;
 				//var temp_min = json.main.temp_min;
 				//var temp_max = json.main.temp_max;
  				console.log("temperatur",temperatur);
-				console.log("context.forecast",context.forecast);
-				context.forecast = 12;
 				//console.log("missingLocation",context.missingLocation);
 			//	delete context.missingLocation;
 			});
@@ -177,7 +175,8 @@ const actions = {
       //	context.missingLocation = true;
       	delete context.forecast;
     	}
-		console.log("return");    
+	console.log("return");  
+	context.forecast = temperatur;
       return resolve(context);
     });
   },
