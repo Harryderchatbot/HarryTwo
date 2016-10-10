@@ -175,6 +175,7 @@ const actions = {
       //	context.missingLocation = true;
       	delete context.forecast;
     	}
+		console.log("return");    
       return resolve(context);
     });
   },
