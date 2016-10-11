@@ -168,17 +168,19 @@ const actions = {
 				//var temp_max = json.main.temp_max;
  				console.log("temperatur",temperatur);
 				//console.log("missingLocation",context.missingLocation);
-			//	delete context.missingLocation;
+				delete context.missingLocation;
+				console.log("return");
+				console.log("temperatur",temperatur);  
+				context.forecast = temperatur;
+    				return resolve(context);
 			});
     	} else {
-	     console.log("else zweig");
-      //	context.missingLocation = true;
-      	delete context.forecast;
+	    	console.log("else zweig");
+      		context.missingLocation = true;
+     	 	delete context.forecast;
+		return resolve(context);
     	}
-	console.log("return");
-	console.log("temperatur",temperatur);  
-	context.forecast = temperatur;
-      return resolve(context);
+	
     });
   },
 };
