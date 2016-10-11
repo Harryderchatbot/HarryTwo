@@ -147,8 +147,9 @@ const actions = {
 	var location = firstEntityValue(entities, 'location')
 	   console.log("location",location);
 	if (location) {
-		//context.missingLocation = false;
+		context.missingLocation = false;
 		 console.log("location gesetzt");
+		context.location = location;
 			var wetter_aktuell = "http://api.openweathermap.org/data/2.5/weather?q=" + location + "&APPID=bee2a155f8da9fb44104d360cc2feb8f&units=metric";
 			var wetter_vorhersage = "http://api.openweathermap.org/data/2.5/forecast?q="+location +"&APPID=bee2a155f8da9fb44104d360cc2feb8f&units=metric";
 			console.log("wetter_aktuell",wetter_aktuell);
