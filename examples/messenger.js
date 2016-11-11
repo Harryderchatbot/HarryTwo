@@ -72,9 +72,10 @@ const fbMessage = (id, text) => {
 	if (json.error.type="OAuthException") {
 		console.log("Error-Typ: OAuthException");
 	} else{
-		console.log("Error-Typ",json.error.type);
+		console.log("Anderer Error-Typ: ",json.error.type);
+		throw new Error(json.error.message);
 	}
-      throw new Error(json.error.message);
+    
     }
     return json;
   });
