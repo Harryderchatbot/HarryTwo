@@ -69,6 +69,11 @@ const fbMessage = (id, text) => {
   .then(rsp => rsp.json())
   .then(json => {
     if (json.error && json.error.message) {
+	if (json.error.type="OAuthException") {
+		console.log("Error-Typ: OAuthException");
+	} else{
+		console.log("Error-Typ",json.error.type);
+	}
       throw new Error(json.error.message);
     }
     return json;
